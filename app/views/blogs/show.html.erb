@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <p>
   <strong>Title:</strong>
@@ -10,12 +9,13 @@
   <%= @blog.content %>
 </p>
 
-
-<% if @favorite %>
-    <%= link_to 'お気に入りを解除する', favorite_path(id: @blog.id), method: :delete %>
-  <% else %>
-    <%= link_to 'お気に入り登録する', favorites_path(id: @blog.id), method: :post %>
+<% if @blog.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_blog_path(@blog) %> |
+  <%= link_to 'Back', blogs_path %>
+<% else %>
+  <% if @favorite %>
+      <%= link_to 'お気に入りを解除する', favorite_path(id: @blog.id), method: :delete %>
+    <% else %>
+      <%= link_to 'お気に入り登録する', favorites_path(id: @blog.id), method: :post %>
+  <% end %>
 <% end %>
-
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>

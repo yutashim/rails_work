@@ -1,0 +1,7 @@
+<h2>お気に入り一覧</h2>
+<% @user.favorite_blog. each do |blog| %>
+  <p><%= "_"*40 %></p>
+  <p>title: <%= blog.title %></p>
+  <p>content: <%= blog.content %></p>
+  <p><%= "_"*40 %></p>
+<% end %>

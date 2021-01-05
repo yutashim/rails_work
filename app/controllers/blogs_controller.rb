@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :user_loggedin?, only: [:show, :edit, :new]
 
   # GET /blogs
   # GET /blogs.json
@@ -10,7 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @favorite = Favorite.find_by(user_id: current_user)
+    @favorite = @blog.favorites.find_by(user_id: current_user.id)
   end
 
   # GET /blogs/new
